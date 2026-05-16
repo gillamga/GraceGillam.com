@@ -3,6 +3,10 @@
 import { useEffect, useRef } from "react"
 import * as THREE from "three"
 
+const BASE_RENDERER_WIDTH = 4000
+const BASE_RENDERER_HEIGHT = 2600
+const MAX_VISIBLE_PRISM_WIDTH = 1120
+
 export function TwistedPrism() {
   const mountRef = useRef<HTMLDivElement>(null)
 
@@ -20,9 +24,27 @@ export function TwistedPrism() {
       antialias: true,
     })
 
-    renderer.setSize(3000, 1900)
     renderer.setClearColor(0x000000, 0)
     mountNode.appendChild(renderer.domElement)
+
+    const resizeRenderer = () => {
+      const availableWidth = mountNode.clientWidth
+
+      if (availableWidth === 0) return
+
+      const scale = Math.min(1, availableWidth / MAX_VISIBLE_PRISM_WIDTH)
+      const rendererWidth = Math.round(BASE_RENDERER_WIDTH * scale)
+      const rendererHeight = Math.round(BASE_RENDERER_HEIGHT * scale)
+
+      camera.aspect = rendererWidth / rendererHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(rendererWidth, rendererHeight)
+    }
+
+    resizeRenderer()
+    const resizeObserver = new ResizeObserver(resizeRenderer)
+    resizeObserver.observe(mountNode)
+    window.addEventListener("resize", resizeRenderer)
 
     const createTextTexture = (text: string) => {
       const canvas = document.createElement("canvas")
@@ -216,7 +238,7 @@ export function TwistedPrism() {
     function animate() {
       animationFrameId = requestAnimationFrame(animate)
 
-      prismGroup.rotation.x += 0.005
+      prismGroup.rotation.x += 0.009
 
       renderer.render(scene, camera)
     }
@@ -225,6 +247,8 @@ export function TwistedPrism() {
 
     return () => {
       cancelAnimationFrame(animationFrameId)
+      resizeObserver.disconnect()
+      window.removeEventListener("resize", resizeRenderer)
 
       prismGroup.traverse((child) => {
         if (child instanceof THREE.Mesh) {

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { InitialScrollReset } from "./_components/initial-scroll-reset"
 import { StarCursor } from "./_components/star-cursor"
 import { TwistedPrism } from "./_components/twisted-prism"
 
@@ -23,6 +24,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <InitialScrollReset />
       <StarCursor />
       <div className="fixed inset-0 z-0 bg-black">
       </div>
