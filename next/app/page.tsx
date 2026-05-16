@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { StarCursor } from "./_components/star-cursor"
 import { TwistedPrism } from "./_components/twisted-prism"
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <StarCursor />
       <div className="fixed inset-0 z-0 bg-black">
       </div>
 
@@ -130,7 +132,7 @@ export default function Home() {
                   <span>DOWNLOAD RESUME</span>
                 </a>
                 <a
-                  href="mailto:your-email@proton.me"
+                  href="mailto:grace.gillam@proton.me"
                   className="group inline-flex items-center gap-2 px-6 py-3 bg-primary/10 border-2 border-primary text-primary font-mono text-sm hover:bg-primary hover:text-background transition-all animate-glow-pulse"
                 >
                   <span>GET IN TOUCH</span>
@@ -150,7 +152,7 @@ export default function Home() {
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="text-lg font-bold text-foreground font-mono">Portfolio Website</h3>
                     <a
-                      href="https://github.com/yourusername/portfolio"
+                      href=""
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:text-foreground transition-colors"
@@ -173,9 +175,9 @@ export default function Home() {
                 {/* Professor's Website */}
                 <div className="border-2 border-primary/30 p-6 hover:border-primary hover:bg-primary/5 transition-all group">
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-lg font-bold text-foreground font-mono">Professor Website</h3>
+                    <h3 className="text-lg font-bold text-foreground font-mono">Living Lab Website for VCU</h3>
                     <a
-                      href="https://github.com/yourusername/professor-site"
+                      href="https://github.com/gillamga/VCU-Living-Lab"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:text-foreground transition-colors"

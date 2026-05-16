@@ -122,6 +122,20 @@
     @apply bg-background text-foreground font-mono;
   }
 
+  @media (hover: hover) and (pointer: fine) {
+    html,
+    body,
+    a,
+    button,
+    [role="button"],
+    input,
+    textarea,
+    select,
+    summary {
+      cursor: url("/cursor-green.png") 8 8, auto;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
   }
